@@ -135,6 +135,8 @@ def byte_to_int(b):
 
 
 def parse_dsn(dsn, host=None, port=None, database=None, user=None, password=None):
+    if '/' in host:
+        host = host[0:host.find('/')]
     if dsn:
         parsed = urlparse("//" + dsn)
         if host is None and parsed.hostname is not None:
